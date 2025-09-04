@@ -1,103 +1,142 @@
-*{
-    margin : 0;
+* {
+    margin: 0;
     padding: 0;
-    font-family: Helvetica, sans-serif;
+    font-family: "Poppins", Helvetica, sans-serif;
     box-sizing: border-box;
-
-}
-body{
-background-image: url(todo.png)
 }
 
-.container{
+body {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
     width: 100%;
     min-height: 100vh;
-    /* background: linear-gradient(135deg,#153677,#4e085f); */
-    padding: 10px;
-    
-    
+    padding: 20px;
 }
-.todo-app{
+
+.todo-app {
     width: 100%;
     max-width: 540px;
     background: #fff;
-    margin: 100px 70px 20px;
-    padding: 40px 30px 70px;
-    border-radius: 10px;
+    margin: auto;
+    padding: 40px 30px 50px;
+    border-radius: 20px;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
 }
-.todo-app h2{
-    color: #002765;
+.todo-app:hover {
+    transform: translateY(-5px);
+}
+
+.todo-app h2 {
+    color: #153677;
+    font-weight: 700;
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+    font-size: 28px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
 }
-.row{
+
+.row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-radius: 30px;
-    background: #edeef0;
-    padding-left: 20px;
+    border-radius: 50px;
+    background: #f5f6fa;
+    padding: 10px 20px;
     margin-bottom: 25px;
+    box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.05);
 }
-input{
-    flex:1;
-    border:none;
-    outline: none;
-    background: transparent;
-    padding: 10px;
-}
-button{
+
+input {
+    flex: 1;
     border: none;
     outline: none;
-    padding: 16px 50px;
-    background: #3080dc;
+    background: transparent;
+    font-size: 16px;
+    padding: 10px;
+    color: #333;
+}
+
+button {
+    border: none;
+    outline: none;
+    padding: 12px 35px;
+    background: linear-gradient(135deg, #3080dc, #6a11cb);
     color: #fff;
     font-size: 16px;
-    cursor :pointer;
-    border-radius: 40px;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 10px rgba(48, 128, 220, 0.4);
 }
-ul li{
+button:hover {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    transform: scale(1.05);
+}
+
+ul li {
     list-style: none;
     font-size: 17px;
-    padding: 15px 12px 20px 60px;
+    padding: 14px 12px 14px 50px;
     user-select: none;
     cursor: pointer;
     position: relative;
+    background: #f8f9ff;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    transition: 0.3s;
 }
-ul li::before{
-    content:'';
+ul li:hover {
+    background: #eef3ff;
+    transform: scale(1.02);
+}
+
+ul li::before {
+    content: '';
     position: absolute;
-    height: 25px;
-    width: 25px;
+    height: 24px;
+    width: 24px;
     border-radius: 50%;
-    background-image: url(todounchecked1.png);
+    background-image: url("todounchecked1.png");
     background-size: cover;
     background-position: center;
-    top: 12px;
-    left:8px;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
 }
 
-ul li.checked{
-        color:#0b03f290;
-        text-decoration: line-through;
+ul li.checked {
+    color: #888;
+    text-decoration: line-through;
 }
-ul li.checked::before{
-    background-image: url(todocheck1.png);
+ul li.checked::before {
+    background-image: url("todocheck1.png");
+}
 
-}
-ul li span{
+ul li span {
     position: absolute;
-    right: 0;
-    top: 5px;
-    width: 40px;
-    height: 40px;
-    font-size: 22px;
-    color: #555;
-    line-height: 40px;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+    color: #666;
+    line-height: 35px;
     text-align: center;
     border-radius: 50%;
+    transition: 0.3s;
 }
-ul li span:hover{
-    background: #0106f824;
+ul li span:hover {
+    background: #f0f0ff;
+    color: #e74c3c;
 }
