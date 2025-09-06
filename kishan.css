@@ -13,9 +13,9 @@ body {
     align-items: center;
     min-height: 100vh;
 }
-
+/* vcd */
 .container {
-    width: 100
+    width: 100px;  
     min-height: 100vh;
     padding: 20px;
 }
