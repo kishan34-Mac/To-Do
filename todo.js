@@ -78,5 +78,5 @@ function clearAllTasks() {
     }
 }
 
-// Initial Load
+
 showTask();
