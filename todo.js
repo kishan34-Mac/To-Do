@@ -2,81 +2,85 @@ const inputBox = document.getElementById("input-box");
 const listContainer = document.getElementById("list-container");
 const taskCounter = document.getElementById("task-counter"); // Optional: add <div id="task-counter"></div> in HTML
 
-// Add Task Function
+// ✅ Add Task Function
 function addTask() {
-    const task = inputBox.value.trim(); // Prevent only spaces
-    
-    if (task === '') {
-        alert('⚠️ Please enter a task!');
-    } else {
-        let li = document.createElement("li");
-        li.innerHTML = task;
+  const task = inputBox.value.trim(); // Prevent only spaces
 
-        // Delete Button
-        let span = document.createElement("span");
-        span.innerHTML = "\u00d7";
-        li.appendChild(span);
+  if (task === "") {
+    alert("⚠️ Please enter a task!");
+  } else {
+    let li = document.createElement("li");
+    li.textContent = task;
 
-        // Append to List
-        listContainer.appendChild(li);
-    }
+    // ✅ Delete Button
+    let span = document.createElement("span");
+    span.innerHTML = "\u00d7"; // X symbol
+    span.classList.add("delete-btn"); // add class for styling
+    li.appendChild(span);
 
-    inputBox.value = "";
-    saveData();
-    updateCounter();
+    // ✅ Append to List
+    listContainer.appendChild(li);
+  }
+
+  inputBox.value = "";
+  saveData();
+  updateCounter();
 }
 
-// Toggle Check or Delete
-listContainer.addEventListener("click", function(e) {
+// ✅ Toggle Check or Delete
+listContainer.addEventListener(
+  "click",
+  function (e) {
     if (e.target.tagName === "LI") {
-        e.target.classList.toggle("checked");
+      e.target.classList.toggle("checked");
+      saveData();
+      updateCounter();
+    } else if (e.target.tagName === "SPAN") {
+      if (confirm("🗑️ Do you want to delete this task?")) {
+        e.target.parentElement.remove();
         saveData();
         updateCounter();
-    } 
-    else if (e.target.tagName === "SPAN") {
-        if (confirm("🗑️ Do you want to delete this task?")) {
-            e.target.parentElement.remove();
-            saveData();
-            updateCounter();
-        }
+      }
     }
-}, false);
+  },
+  false
+);
 
-// Save to Local Storage
+// ✅ Save to Local Storage
 function saveData() {
-    localStorage.setItem("todoData", listContainer.innerHTML);
+  localStorage.setItem("todoData", listContainer.innerHTML);
 }
 
-// Show Saved Tasks
+// ✅ Show Saved Tasks
 function showTask() {
-    listContainer.innerHTML = localStorage.getItem("todoData") || "";
-    updateCounter();
+  listContainer.innerHTML = localStorage.getItem("todoData") || "";
+  updateCounter();
 }
 
-// Task Counter
+// ✅ Task Counter
 function updateCounter() {
-    let total = listContainer.querySelectorAll("li").length;
-    let completed = listContainer.querySelectorAll("li.checked").length;
-    if (taskCounter) {
-        taskCounter.innerText = `✅ Completed: ${completed} | 📌 Total: ${total}`;
-    }
+  let total = listContainer.querySelectorAll("li").length;
+  let completed = listContainer.querySelectorAll("li.checked").length;
+  if (taskCounter) {
+    taskCounter.innerText = `✅ Completed: ${completed} | 📌 Total: ${total}`;
+  }
 }
 
-// Add Task on Enter Key
-inputBox.addEventListener("keypress", function(e) {
-    if (e.key === "Enter") {
-        addTask();
-    }
+// ✅ Add Task on Enter Key
+inputBox.addEventListener("keypress", function (e) {
+  if (e.key === "Enter") {
+    addTask();
+  }
 });
 
-// Clear All Tasks
+// ✅ Clear All Tasks
 function clearAllTasks() {
-    if (confirm("⚠️ Are you sure you want to clear all tasks?")) {
-        listContainer.innerHTML = "";
-        saveData();
-        updateCounter();
-    }
+  if (confirm("⚠️ Are you sure you want to clear all tasks?")) {
+    listContainer.innerHTML = "";
+    saveData();
+    updateCounter();
+  }
 }
 
-
+// ✅ Load Saved Tasks on Page Load
 showTask();
